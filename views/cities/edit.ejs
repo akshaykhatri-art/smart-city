@@ -1,0 +1,56 @@
+<%- layout('layouts/boilerplate') %>
+<div class="row">
+    <h1 class="text-center">Edit City</h1>
+    <div class="col-6 offset-3">
+        <form action="/cities/<%= city._id %>?_method=PUT" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="cityname">City Name</label>
+                <input class="form-control" type="text" id="cityname" name="city[cityname]" value="<%= city.cityname %>"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class=" mb-3">
+                <label class="form-label" for="state">State</label>
+                <input class="form-control" type="text" id="state" name="city[state]" value="<%= city.state %>"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="city[image]" value="<%= city.image %>"
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="population">Population</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="population-label">@</span>
+                    <input type="text" class="form-control" id="populaiton" placeholder="0" aria-label="populaiton"
+                        aria-describedby="population-label" name="city[population]" value="<%= city.population %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description Url</label>
+                <textarea class="form-control" type="text" id="description" name="city[description]"
+                    required><%= city.description %></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update City</button>
+            </div>
+        </form>
+        <a href="/cities/<%= city._id %>">Back To City</a>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<%- layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%= city.image %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= city.cityname %>, <%= city.state %></h5>
+                <p class="card-text"><%= city.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Population: <%= city.population %></li>
+            </ul>
+            <div class="card-body">
+                <a href="/cities/<%= city._id %>/edit" class="card-link btn btn-warning">Edit</a>
+                <form class="d-inline" action="/cities/<%= city._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">DELETE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h2>Leave a Review</h2>
+        <form action="/cities/<%= city._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="easeOfLiving">Ease Of Living</label>
+                <input class="form-range" type="range" min="1" max="5" name="review[easeOfLiving]" id="easeOfLiving">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="municipalPerformance">Municipal Performance</label>
+                <input class="form-range" type="range" min="1" max="5" name="review[municipalPerformance]"
+                    id="municipalPerformance">
+            </div>
+            <div class="mb-3">
+                <label for="body" class="form-label">Review</label>
+                <textarea name="review[body]" class="form-control" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+        <% for(let review of city.reviews) { %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Ease of Living: <%= review.easeOfLiving %></h5>
+                <h5 class="card-title">Municipal Performance: <%= review.municipalPerformance %></h5>
+                <p class="card-text">Review: <%= review.body %></p>
+                <form action="/cities/<%= city._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">DELETE</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

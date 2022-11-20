@@ -1,0 +1,22 @@
+<%- layout('layouts/boilerplate') %>
+<h1>All Cities</h1>
+<div>
+    <a href="/cities/new">Add New City</a>
+</div>
+
+<% for (let city of cities) { %>
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid" src="<%= city.image %>" alt="">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= city.cityname %>, <%= city.state %></h5>
+                <p class="card-text"><%= city.description %></p>
+                <a class="btn btn-primary" href="/cities/<%= city._id %>">View Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
